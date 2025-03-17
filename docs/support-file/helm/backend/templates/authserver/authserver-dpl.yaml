@@ -18,12 +18,15 @@ spec:
         {{- include "common.labels.standard" . | nindent 8 }}
         values-hash: "{{ toYaml .Values | sha256sum | trunc 63 }}"
         component: authserver
-      {{- with .Values.authserver.annotations }}
+      {{- if or .Values.authserver.annotations .Values.authserver.podAnnotations .Values.global.cni.calico.ipv4pools }}
       annotations:
-        {{ toYaml . | indent 8 }}
-      {{- end }}
-      {{- if .Values.authserver.podAnnotations }}
-        {{ toYaml .Values.authserver.podAnnotations | indent 8 }}
+        {{- with .Values.authserver.annotations }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- if .Values.authserver.podAnnotations }}
+          {{- toYaml .Values.authserver.podAnnotations | nindent 8 }}
+        {{- end }}
+        {{- include "common.cni.calicoIpv4Pools" (dict "global" .Values.global $) | nindent 8 }}
       {{- end }}
     spec:
       containers:

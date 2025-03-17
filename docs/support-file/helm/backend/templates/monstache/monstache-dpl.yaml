@@ -18,12 +18,15 @@ spec:
         {{- include "common.labels.standard" . | nindent 8 }}
         component: monstache
         values-hash: "{{ toYaml .Values | sha256sum | trunc 63 }}"
-      {{- with .Values.monstache.annotations }}
+      {{- if or .Values.monstache.annotations .Values.monstache.podAnnotations .Values.global.cni.calico.ipv4pools }}
       annotations:
-        {{ toYaml . | indent 8 }}
-      {{- end }}
-      {{- if .Values.monstache.podAnnotations }}
-        {{ toYaml .Values.monstache.podAnnotations | indent 8 }}
+        {{- with .Values.monstache.annotations }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- if .Values.monstache.podAnnotations }}
+          {{- toYaml .Values.monstache.podAnnotations | nindent 8 }}
+        {{- end }}
+        {{- include "common.cni.calicoIpv4Pools" (dict "global" .Values.global $) | nindent 8 }}
       {{- end }}
     spec:
       containers:

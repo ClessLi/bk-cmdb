@@ -18,12 +18,15 @@ spec:
         {{- include "common.labels.standard" . | nindent 8 }}
         component: coreservice
         values-hash: "{{ toYaml .Values | sha256sum | trunc 63 }}"
-      {{- with .Values.coreservice.annotations }}
+      {{- if or .Values.coreservice.annotations .Values.coreservice.podAnnotations .Values.global.cni.calico.ipv4pools }}
       annotations:
-        {{ toYaml . | indent 8 }}
-      {{- end }}
-      {{- if .Values.coreservice.podAnnotations }}
-        {{ toYaml .Values.coreservice.podAnnotations | indent 8 }}
+        {{- with .Values.coreservice.annotations }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- if .Values.coreservice.podAnnotations }}
+          {{- toYaml .Values.coreservice.podAnnotations | nindent 8 }}
+        {{- end }}
+        {{- include "common.cni.calicoIpv4Pools" (dict "global" .Values.global $) | nindent 8 }}
       {{- end }}
     spec:
       containers:

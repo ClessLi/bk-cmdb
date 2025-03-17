@@ -1,0 +1,9 @@
+dependencies:
+- name: kibana
+  repository: file://../kibana
+  version: 10.2.9
+- name: common
+  repository: file://../common
+  version: 2.2.2
+digest: sha256:06102173686edb73950786e1a2050ee8779f5abe1acc1f9b9ae16b65d94c9dd8
+generated: "2025-03-14T18:03:35.5528906+08:00"

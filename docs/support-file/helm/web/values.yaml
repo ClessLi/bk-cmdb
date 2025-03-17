@@ -15,6 +15,10 @@ global:
   ##
   imagePullSecrets: []
   storageClass: ""
+  # CNI接口插件Pod注解
+  cni:
+    calico:
+      ipv4pools: []
 
 ## @section bk-cmdb image parameters
 ##
@@ -414,6 +418,14 @@ mongodb:
     username: cc
     password:
     database: cmdb
+  ## @param mongodb.image.repository MongoDB(&reg;) image registry
+  ##
+  image:
+    repository: bitnami/mongodb
+  ## @param mongodb.podAnnotations MongoDB(&reg;) Pod annotations
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  podAnnotations: { }
   ## @param mongodb.host mongodb host
   ##
   host: mongodb-headless.default.svc.cluster.local
@@ -463,16 +475,23 @@ redis:
   master:
     persistence:
       size: 10Gi
+    ## @param redis.master.podAnnotations Annotations for Redis&reg; master pods
+    ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+    ##
+    podAnnotations: { }
   ## @param redis.architecture redis architecture
   ##
   architecture: standalone
   ## @param redis.auth.enabled Enable redis authentication
   ## @param redis.auth.password redis authentication password
+  ##
   auth:
     enabled: true
     password:
-  ## external redis parameters
+  ## @param redis.image.repository Redis&reg; image repository
   ##
+  image:
+    repository: bitnami/redis
   redis:
     ## @param redis.redis.host external redis host
     ##

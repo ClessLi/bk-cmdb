@@ -18,12 +18,15 @@ spec:
         {{- include "common.labels.standard" . | nindent 8 }}
         component: taskserver
         values-hash: "{{ toYaml .Values | sha256sum | trunc 63 }}"
-      {{- with .Values.taskserver.annotations }}
+      {{- if or .Values.taskserver.annotations .Values.taskserver.podAnnotations .Values.global.cni.calico.ipv4pools }}
       annotations:
-        {{ toYaml . | indent 8 }}
-      {{- end }}
-      {{- if .Values.taskserver.podAnnotations }}
-        {{ toYaml .Values.taskserver.podAnnotations | indent 8 }}
+        {{- with .Values.taskserver.annotations }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- if .Values.taskserver.podAnnotations }}
+          {{- toYaml .Values.taskserver.podAnnotations | nindent 8 }}
+        {{- end }}
+        {{- include "common.cni.calicoIpv4Pools" (dict "global" .Values.global $) | nindent 8 }}
       {{- end }}
     spec:
       containers:

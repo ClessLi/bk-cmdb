@@ -17,6 +17,10 @@ global:
   storageClass: ""
   # 加密算法类型，枚举值：CLASSIC（国际算法）、SHANGMI（国密算法）
   bkCryptoType: "CLASSIC"
+  # CNI接口插件Pod注解
+  cni:
+    calico:
+      ipv4pools: []
 
 ## @section bk-cmdb image parameters
 ##
@@ -1421,6 +1425,14 @@ zookeeper:
   ##
   persistence:
     size: 10Gi
+  ## @param zookeeper.image.repository ZooKeeper image repository
+  ##
+  image:
+    repository: bitnami/zookeeper
+  ## @param zookeeper.podAnnotations Annotations for ZooKeeper pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  podAnnotations: { }
 
 ## @section bk-cmdb config and service center parameters
 ##
@@ -1457,6 +1469,14 @@ mongodb:
     username: cc
     password:
     database: cmdb
+  ## @param mongodb.image.repository MongoDB(&reg;) image registry
+  ##
+  image:
+    repository: bitnami/mongodb
+  ## @param mongodb.podAnnotations MongoDB(&reg;) Pod annotations
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  podAnnotations: { }
   ## @param mongodb.host mongodb host
   ##
   host: mongodb-headless.default.svc.cluster.local
@@ -1537,14 +1557,23 @@ redis:
   master:
     persistence:
       size: 10Gi
+    ## @param redis.master.podAnnotations Annotations for Redis&reg; master pods
+    ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+    ##
+    podAnnotations: { }
   ## @param redis.architecture redis architecture
   ##
   architecture: standalone
   ## @param redis.auth.enabled Enable redis authentication
   ## @param redis.auth.password redis authentication password
+  ##
   auth:
     enabled: true
     password:
+  ## @param redis.image.repository Redis&reg; image repository
+  ##
+  image:
+    repository: bitnami/redis
   ## external redis parameters
   ##
   redis:
@@ -1655,6 +1684,10 @@ elasticsearch:
     persistence:
       size: 10Gi
     replicas: 1
+    ## @param elasticsearch.master.podAnnotations Annotations for master-elegible pods
+    ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+    ##
+    podAnnotations: { }
   ## @param elasticsearch.coordinating.replicas elasticsearch coordinating node replicas number
   ##
   coordinating:
@@ -1666,6 +1699,10 @@ elasticsearch:
     persistence:
       size: 10Gi
     replicas: 1
+  ## @param elasticsearch.image.repository Elasticsearch image repository
+  ##
+  image:
+    repository: bitnami/elasticsearch
 
 ## @section monstache parameters
 ##

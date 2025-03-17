@@ -18,12 +18,15 @@ spec:
         {{- include "common.labels.standard" . | nindent 8 }}
         component: webserver
         values-hash: {{ toYaml .Values | sha256sum | trunc 63 }}
-      {{- with .Values.webserver.annotations }}
+      {{- if or .Values.webserver.annotations .Values.webserver.podAnnotations .Values.global.cni.calico.ipv4pools }}
       annotations:
-        {{ toYaml . | indent 8 }}
-      {{- end }}
-      {{- if .Values.webserver.podAnnotations }}
-        {{ toYaml .Values.webserver.podAnnotations | indent 8 }}
+        {{- with .Values.webserver.annotations }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- if .Values.webserver.podAnnotations }}
+          {{- toYaml .Values.webserver.podAnnotations | nindent 8 }}
+        {{- end }}
+        {{- include "common.cni.calicoIpv4Pools" (dict "global" .Values.global $) | nindent 8 }}
       {{- end }}
     spec:
       {{- if .Values.webserver.hostNetwork }}
