@@ -50,20 +50,27 @@ $ helm uninstall bkcmdb
 
 ## Chart依赖
 
-- [bitnami/mongodb](https://github.com/bitnami/charts/tree/master/bitnami/mongodb)
-- [bitnami/redis](https://github.com/bitnami/charts/tree/master/bitnami/redis)
-- [bitnami/zookeeper](https://github.com/bitnami/charts/tree/master/bitnami/zookeeper)
-- [bitnami/elasticsearch](https://github.com/bitnami/charts/tree/master/bitnami/elasticsearch)
+- [bitnami/mongodb](../dependencies/mongodb/README.md)
+- [bitnami/redis](../dependencies/redis/README.md)
+- [bitnami/zookeeper](../dependencies/zookeeper/README.md)
+- [bitnami/elasticsearch](../dependencies/elasticsearch/README.md)
 
 ## 配置说明
 
 各项配置集中在仓库的一个values.yaml文件之中
 
+### 全局cni（calico）网段配置
+
+|             参数              |                             描述                              | 默认值 |
+|:---------------------------:|:-----------------------------------------------------------:|:---:|
+| global.cni.calico.ipv4pools | IPv4网段池（全局）,以CIDR字符串列表为值，如`["10.0.1.0/24", "10.0.2.0/24"]`。 | []  |
+
+
 ### 镜像配置
 
 |      参数       |     描述     |    默认值    |
 | :-------------: | :----------: | :----------: |
-| image.registry | 镜像源域名 | mirrors.tencent.com |
+| image.registry | 镜像源域名 | hub.bktencent.com |
 | image.pullPolicy | 镜像拉取策略 | IfNotPresent |
 
 ### 启动时初始化配置说明
@@ -319,23 +326,26 @@ $ helm uninstall bkcmdb
 以`common`开头的配置，对应的是cmdb中`common.yaml`的配置文件中的各项配置，可根据原`common.yaml`中的配置对`common`开头的配置进行修改
 
 ### mongodb配置
-|                 参数                 |              描述               |              默认值              |
-| :----------------------------------: | :-----------------------------: | :------------------------------: |
-|      mongodb.enabled      | 是否部署mognodb，如果需要使用外部数据库，设置为`false`并配置`mongodb.externalMongodb`和`mongodb.watch`下关于外部mongodb的配置 |               true               |
+|            参数            |                                              描述                                               |       默认值       |
+|:------------------------:|:---------------------------------------------------------------------------------------------:|:---------------:|
+|     mongodb.enabled      | 是否部署mognodb，如果需要使用外部数据库，设置为`false`并配置`mongodb.externalMongodb`和`mongodb.watch`下关于外部mongodb的配置 |      true       |
+| mongodb.image.repository |                                 部署mongodb时，所指定的镜像仓库地址（不包含仓库名）                                 | bitnami/mongodb |
 
 `mongodb.externalMongodb` 和 `mongodb.watch` 开头的配置，可根据原`mongodb.yaml`中的配置进行修改
 
 ### redis配置
-|                 参数                 |              描述               |              默认值              |
-| :----------------------------------: | :-----------------------------: | :------------------------------: |
-|      redis.enabled      | 是否部署redis，如果需要使用外部数据库，设置为`false`并配置`redis.redis`、`redis.snapshotRedis`、`redis.discoverRedis`、`redis.netCollectRedis`下关于外部redis的配置 |               true               |
+|           参数           |                                                                描述                                                                 |      默认值      |
+|:----------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:-------------:|
+|     redis.enabled      | 是否部署redis，如果需要使用外部数据库，设置为`false`并配置`redis.redis`、`redis.snapshotRedis`、`redis.discoverRedis`、`redis.netCollectRedis`下关于外部redis的配置 |     true      |
+| redis.image.repository |                                                    部署redis时，所指定的镜像仓库地址（不包含仓库名）                                                    | bitnami/redis |
 
 `redis.redis`、`redis.snapshotRedis`、`redis.discoverRedis`、`redis.netCollectRedis` 开头的配置，可根据原`redis.yaml`中的配置进行修改
 
 ### zookeeper配置
-|                 参数                 |              描述               |              默认值              |
-| :----------------------------------: | :-----------------------------: | :------------------------------: |
-|      zookeeper.enabled      | 是否部署zookeeper作为配置发现中心、服务发现中心，如果需要使用外部zookeeper组件，设置为`false`并配置`configAndServiceCenter.addr` |               true               |
+|             参数             |                                             描述                                              |        默认值        |
+|:--------------------------:|:-------------------------------------------------------------------------------------------:|:-----------------:|
+|     zookeeper.enabled      | 是否部署zookeeper作为配置发现中心、服务发现中心，如果需要使用外部zookeeper组件，设置为`false`并配置`configAndServiceCenter.addr` |       true        |
+| zookeeper.image.repository |                               部署zookeeper时，所指定的镜像仓库地址（不包含仓库名）                               | bitnami/zookeeper |
 
 ### 配置发现中心、服务发现中心配置
 
@@ -345,16 +355,17 @@ $ helm uninstall bkcmdb
 
 ### elasticsearch配置
 
-|            参数             |                             描述                             | 默认值 |
-| :-------------------------: | :----------------------------------------------------------: | :----: |
-| common.es.fullTextSearch | 开启全文索引开关，可选值为`on` 和 `off`, 默认关闭 | off       |
-| common.es.url | 连接外部es的url |        |
-| common.es.usr | 连接外部es的用户名 |        |
-| common.es.pwd | 连接外部es的密码 |        |
-| elasticsearch.enabled | 是否启动内部部署的es，如果需要使用外部es组件，设置为`false`并配置`common.es.url`、`common.es.usr`、`common.es.pwd`的外部组件信息|    false    |
-| elasticsearch.master.replicas | 内置es的master节点数 |     1   |
-| elasticsearch.coordinating.replicas | 内置es的协调节点数 |     1   |
-| elasticsearch.data.replicas | 内置es的数据节点数 |     1   |
+|                 参数                  |                                              描述                                              |          默认值          |
+|:-----------------------------------:|:--------------------------------------------------------------------------------------------:|:---------------------:|
+|      common.es.fullTextSearch       |                               开启全文索引开关，可选值为`on` 和 `off`, 默认关闭                                |          off          |
+|            common.es.url            |                                          连接外部es的url                                          |                       |
+|            common.es.usr            |                                          连接外部es的用户名                                          |                       |
+|            common.es.pwd            |                                          连接外部es的密码                                           |                       |
+|        elasticsearch.enabled        | 是否启动内部部署的es，如果需要使用外部es组件，设置为`false`并配置`common.es.url`、`common.es.usr`、`common.es.pwd`的外部组件信息 |         false         |
+|    elasticsearch.master.replicas    |                                        内置es的master节点数                                        |           1           |
+| elasticsearch.coordinating.replicas |                                          内置es的协调节点数                                          |           1           |
+|     elasticsearch.data.replicas     |                                          内置es的数据节点数                                          |           1           |
+|   elasticsearch.image.repository    |                                  部署内置es时，所指定的镜像仓库地址（不包含仓库名）                                  | bitnami/elasticsearch |
 
 ### monstache配置
 monstache是一个用于将mongodb的数据同步到es去创建索引的一个组件

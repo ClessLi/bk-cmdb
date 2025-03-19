@@ -66,6 +66,13 @@ The following table lists the helpers available in the library which are scoped 
 | `common.capabilities.hpa.apiVersion`           | Return the appropriate apiVersion for Horizontal Pod Autoscaler                                | `.` Chart context |
 | `common.capabilities.supportsHelmVersion`      | Returns true if the used Helm version is 3.3+                                                  | `.` Chart context |
 
+### CNI
+
+| Helper identifier            | Description                              | Expected Input                                            |
+|------------------------------|------------------------------------------|-----------------------------------------------------------|
+| `common.cni.calicoIpv4Pools` | Return the calico ipv4 pools annotations | `dict "annotationKey" .annotation.key "global" .global $` |
+
+
 ### Errors
 
 | Helper identifier                       | Description                                                                                                                                                            | Expected Input                                                                      |
