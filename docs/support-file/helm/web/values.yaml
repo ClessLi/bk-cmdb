@@ -85,6 +85,9 @@ webserver:
     ## @param webserver.service.type bk-cmdb webserver service type
     ##
     type: "ClusterIP"
+    ## @param webserver.service.isHeadless bk-cmdb webserver service class
+    ##
+    isHeadless: false
     ## @param webserver.service.ports Expose bk-cmdb webserver service by webserver.service.ports[0].nodePort when webserver.service.type is "NodePort"
     ##
     ports:

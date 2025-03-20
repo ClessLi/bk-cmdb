@@ -7,6 +7,9 @@ metadata:
 {{ include "common.labels.standard" . | indent 4 }}
 spec:
   type: {{ .Values.webserver.service.type }}
+  {{- if and (eq .Values.webserver.service.type "ClusterIP") .Values.webserver.service.isHeadless (eq .Values.webserver.service.isHeadless true)}}
+  clusterIP: None
+  {{- end }}
   ports:
   {{- with .Values.webserver.service.ports }}
   {{- toYaml . | nindent 4 }}
