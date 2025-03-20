@@ -33,6 +33,7 @@ spec:
       hostNetwork: true
       {{- end }}
       dnsPolicy: {{ .Values.webserver.dnsPolicy }}
+      {{- include "common.images.pullSecrets" (dict "global" .Values.global) | nindent 6 }}
       containers:
       - name: webserver
         image: {{ .Values.image.registry }}/{{ .Values.webserver.image.repository }}:v{{ default .Chart.AppVersion .Values.webserver.image.tag }}
@@ -49,6 +50,12 @@ spec:
         {{- end }}
         - --v={{ .Values.webserver.command.logLevel }}
         - --logtostderr={{ .Values.webserver.command.logToStdErr }}
+        {{- $regdiscv := (include "cmdb.configAndServiceCenter.addr" .) -}}
+        {{- if $regdiscv }}
+        - --regdiscv={{ $regdiscv }}
+        {{- else }}
+        - --deployment-method=blueking
+        {{- end }}
         livenessProbe:
           httpGet:
             path: /healthz

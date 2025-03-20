@@ -101,23 +101,23 @@ webserver:
   port: 80
   ## @param adminserver.configDir bk-cmdb adminserver config directory
   ##
-  configDir: /data/cmdb/cmdb_webserver/configure
+  configDir: /cmdb_webserver/configure
   ## @param adminserver.errors bk-cmdb adminserver errors config directory
   ##ku  c
-  errors: /data/cmdb/cmdb_webserver/conf/errors
+  errors: /cmdb_webserver/conf/errors
   ## @param adminserver.errors bk-cmdb adminserver language config directory
   ##
-  language: /data/cmdb/cmdb_webserver/conf/language
+  language: /cmdb_webserver/conf/language
   ## @param webserver.workDir bk-cmdb webserver work directory
   ##
-  workDir: /data/cmdb/cmdb_webserver
+  workDir: /cmdb_webserver
   ## bk-cmdb webserver start command parameters
   ## @param webserver.command.logDir bk-cmdb webserver log directory
   ## @param webserver.command.logLevel bk-cmdb webserver log level
   ## @param webserver.command.logLevel Enable bk-cmdb webserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_webserver/logs
+    logDir: /cmdb_webserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -229,7 +229,7 @@ web:
       httpsDomainUrl:
       appCode: bk_cmdb
       resourcesPath: /tmp/
-      htmlRoot: /data/cmdb/cmdb_webserver/web
+      htmlRoot: /cmdb_webserver/web
       authScheme: internal
       helpDocUrl:
       bkDomain:
@@ -264,9 +264,9 @@ web:
     # cmdb版本日志存放路径配置
     changelogPath:
       # 中文版版本日志存放路径
-      ch: /data/cmdb/cmdb_webserver/changelog_user/ch
+      ch: /cmdb_webserver/changelog_user/ch
       # 英文版版本日志存放路径
-      en: /data/cmdb/cmdb_webserver/changelog_user/en
+      en: /cmdb_webserver/changelog_user/en
     # web-server使用的jwt配置
     jwt:
       # 是否开启jwt认证功能
@@ -387,6 +387,15 @@ web:
 ##
 # configAndServiceCenter:
 #   addr:
+
+## @section zookeeper parameters
+##
+## @param zookeeper.enabled Enable internal zookeeper
+## @param zookeeper.nameOverride String to partially override common.names.fullname template (will maintain the release name)
+##
+# zookeeper:
+#   enabled: true
+#   nameOverride: ""
 
 ## @section mongodb parameters
 ##

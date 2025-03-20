@@ -103,13 +103,13 @@ $ helm uninstall bkcmdb
 |        adminserver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         adminserver.replicas         |           pod副本数量           |                1                 |
 |           adminserver.port           |            服务端口             |                80                |
-|        adminserver.configDir         |       需要的配置文件路径        | /data/cmdb/cmdb_adminserver/configure |
-|        adminserver.errors       |       需要的错误文件路径        | /data/cmdb/cmdb_adminserver/conf/errors |
-|        adminserver.language       |       需要的语言文件路径        | /data/cmdb/cmdb_adminserver/conf/language |
-|      adminserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_adminserver/logs              |
+|        adminserver.configDir         |       需要的配置文件路径        | /cmdb_adminserver/configure |
+|        adminserver.errors       |       需要的错误文件路径        | /cmdb_adminserver/conf/errors |
+|        adminserver.language       |       需要的语言文件路径        | /cmdb_adminserver/conf/language |
+|      adminserver.command.logDir      |          日志存放路径           |              /cmdb_adminserver/logs              |
 |     adminserver.command.logLevel     |            日志等级             |                3                 |
 |   adminserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         adminserver.workDir          |            工作目录             |      /data/cmdb/cmdb_adminserver      |
+|         adminserver.workDir          |            工作目录             |      /cmdb_adminserver      |
 
 ### apiserver服务配置说明
 
@@ -120,10 +120,10 @@ $ helm uninstall bkcmdb
 |        apiserver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         apiserver.replicas         |           pod副本数量           |                1                 |
 |           apiserver.port           |            服务端口             |                80                |
-|      apiserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_apiserver/logs              |
+|      apiserver.command.logDir      |          日志存放路径           |              /cmdb_apiserver/logs              |
 |     apiserver.command.logLevel     |            日志等级             |                3                 |
 |   apiserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         apiserver.workDir          |            工作目录             |      /data/cmdb/cmdb_apiserver      |
+|         apiserver.workDir          |            工作目录             |      /cmdb_apiserver      |
 
 ### authserver服务配置说明
 
@@ -136,10 +136,10 @@ $ helm uninstall bkcmdb
 |           authserver.port           |            服务端口             |                80                |
 | authserver.ingress.enabled | 开启ingress访问 | true |
 | authserver.ingress.hosts | ingress代理访问的域名 |cmdb-auth.example.com|
-|      authserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_authserver/logs              |
+|      authserver.command.logDir      |          日志存放路径           |              /cmdb_authserver/logs              |
 |     authserver.command.logLevel     |            日志等级             |                3                 |
 |   authserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         authserver.workDir          |            工作目录             |      /data/cmdb/cmdb_authserver     |
+|         authserver.workDir          |            工作目录             |      /cmdb_authserver     |
 
 ### cacheservice服务配置说明
 
@@ -150,10 +150,10 @@ $ helm uninstall bkcmdb
 |        cacheservice.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         cacheservice.replicas         |           pod副本数量           |                1                 |
 |           cacheservice.port           |            服务端口             |                80                |
-|      cacheservice.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_cacheservice/logs              |
+|      cacheservice.command.logDir      |          日志存放路径           |              /cmdb_cacheservice/logs              |
 |     cacheservice.command.logLevel     |            日志等级             |                3                 |
 |   cacheservice.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         cacheservice.workDir          |            工作目录             |      /data/cmdb/cmdb_cacheservice     |
+|         cacheservice.workDir          |            工作目录             |      /cmdb_cacheservice     |
 
 ### cloudserver服务配置说明
 
@@ -164,11 +164,11 @@ $ helm uninstall bkcmdb
 |        cloudserver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         cloudserver.replicas         |           pod副本数量           |                1                 |
 |           cloudserver.port           |            服务端口             |                80                |
-|      cloudserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_cloudserver/logs              |
+|      cloudserver.command.logDir      |          日志存放路径           |              /cmdb_cloudserver/logs              |
 |     cloudserver.command.logLevel     |            日志等级             |                3                 |
 |   cloudserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
 |   cloudserver.command.enableCryptor    | 是否开启加密服务 |              false               |
-|         cloudserver.workDir          |            工作目录             |      /data/cmdb/cmdb_cloudserver     |
+|         cloudserver.workDir          |            工作目录             |      /cmdb_cloudserver     |
 
 ### coreservice服务配置说明
 
@@ -179,10 +179,10 @@ $ helm uninstall bkcmdb
 |        coreservice.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         coreservice.replicas         |           pod副本数量           |                1                 |
 |           coreservice.port           |            服务端口             |                80                |
-|      coreservice.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_coreservice/logs              |
+|      coreservice.command.logDir      |          日志存放路径           |              /cmdb_coreservice/logs              |
 |     coreservice.command.logLevel     |            日志等级             |                3                 |
 |   coreservice.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         coreservice.workDir          |            工作目录             |      /data/cmdb/cmdb_coreservice     |
+|         coreservice.workDir          |            工作目录             |      /cmdb_coreservice     |
 
 ### datacollection服务配置说明
 
@@ -193,10 +193,10 @@ $ helm uninstall bkcmdb
 |        datacollection.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         datacollection.replicas         |           pod副本数量           |                1                 |
 |           datacollection.port           |            服务端口             |                80                |
-|      datacollection.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_datacollection/logs              |
+|      datacollection.command.logDir      |          日志存放路径           |              /cmdb_datacollection/logs              |
 |     datacollection.command.logLevel     |            日志等级             |                3                 |
 |   datacollection.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         datacollection.workDir          |            工作目录             |      /data/cmdb/cmdb_datacollection     |
+|         datacollection.workDir          |            工作目录             |      /cmdb_datacollection     |
 
 ### eventserver服务配置说明
 
@@ -207,10 +207,10 @@ $ helm uninstall bkcmdb
 |        eventserver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         eventserver.replicas         |           pod副本数量           |                1                 |
 |           eventserver.port           |            服务端口             |                80                |
-|      eventserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_eventserver/logs              |
+|      eventserver.command.logDir      |          日志存放路径           |              /cmdb_eventserver/logs              |
 |     eventserver.command.logLevel     |            日志等级             |                3                 |
 |   eventserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         eventserver.workDir          |            工作目录             |      /data/cmdb/cmdb_eventserver     |
+|         eventserver.workDir          |            工作目录             |      /cmdb_eventserver     |
 
 ### hostserver服务配置说明
 
@@ -221,10 +221,10 @@ $ helm uninstall bkcmdb
 |        hostserver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         hostserver.replicas         |           pod副本数量           |                1                 |
 |           hostserver.port           |            服务端口             |                80                |
-|      hostserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_hostserver/logs              |
+|      hostserver.command.logDir      |          日志存放路径           |              /cmdb_hostserver/logs              |
 |     hostserver.command.logLevel     |            日志等级             |                3                 |
 |   hostserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         hostserver.workDir          |            工作目录             |      /data/cmdb/cmdb_hostserver     |
+|         hostserver.workDir          |            工作目录             |      /cmdb_hostserver     |
 
 ### operationserver服务配置说明
 
@@ -235,10 +235,10 @@ $ helm uninstall bkcmdb
 |        operationserver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         operationserver.replicas         |           pod副本数量           |                1                 |
 |           operationserver.port           |            服务端口             |                80                |
-|      operationserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_operationserver/logs              |
+|      operationserver.command.logDir      |          日志存放路径           |              /cmdb_operationserver/logs              |
 |     operationserver.command.logLevel     |            日志等级             |                3                 |
 |   operationserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         operationserver.workDir          |            工作目录             |      /data/cmdb/cmdb_operationserver    |
+|         operationserver.workDir          |            工作目录             |      /cmdb_operationserver    |
 
 ### procserver服务配置说明
 
@@ -249,10 +249,10 @@ $ helm uninstall bkcmdb
 |        procserver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         procserver.replicas         |           pod副本数量           |                1                 |
 |           procserver.port           |            服务端口             |                80                |
-|      procserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_procserver/logs              |
+|      procserver.command.logDir      |          日志存放路径           |              /cmdb_procserver/logs              |
 |     procserver.command.logLevel     |            日志等级             |                3                 |
 |   procserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         procserver.workDir          |            工作目录             |      /data/cmdb/cmdb_procserver    |
+|         procserver.workDir          |            工作目录             |      /cmdb_procserver    |
 
 ### taskserver服务配置说明
 
@@ -263,10 +263,10 @@ $ helm uninstall bkcmdb
 |        taskserver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         taskserver.replicas         |           pod副本数量           |                1                 |
 |           taskserver.port           |            服务端口             |                80                |
-|      taskserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_taskserver/logs              |
+|      taskserver.command.logDir      |          日志存放路径           |              /cmdb_taskserver/logs              |
 |     taskserver.command.logLevel     |            日志等级             |                3                 |
 |   taskserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         taskserver.workDir          |            工作目录             |      /data/cmdb/cmdb_taskserver    |
+|         taskserver.workDir          |            工作目录             |      /cmdb_taskserver    |
 
 ### toposerver服务配置说明
 
@@ -277,10 +277,10 @@ $ helm uninstall bkcmdb
 |        toposerver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         toposerver.replicas         |           pod副本数量           |                1                 |
 |           toposerver.port           |            服务端口             |                80                |
-|      toposerver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_toposerver/logs              |
+|      toposerver.command.logDir      |          日志存放路径           |              /cmdb_toposerver/logs              |
 |     toposerver.command.logLevel     |            日志等级             |                3                 |
 |   toposerver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         toposerver.workDir          |            工作目录             |      /data/cmdb/cmdb_toposerver    |
+|         toposerver.workDir          |            工作目录             |      /cmdb_toposerver    |
 
 ### synchronizeserver服务配置说明
 
@@ -291,10 +291,10 @@ $ helm uninstall bkcmdb
 |        synchronizeserver.image.tag         |          服务镜像版本           | {TAG_NAME} |
 |         synchronizeserver.replicas         |           pod副本数量           |                1                 |
 |           synchronizeserver.port           |            服务端口             |                80                |
-|      synchronizeserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_synchronizeserver/logs              |
+|      synchronizeserver.command.logDir      |          日志存放路径           |              /cmdb_synchronizeserver/logs              |
 |     synchronizeserver.command.logLevel     |            日志等级             |                3                 |
 |   synchronizeserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         synchronizeserver.workDir          |            工作目录             |      /data/cmdb/cmdb_synchronizeserver    |
+|         synchronizeserver.workDir          |            工作目录             |      /cmdb_synchronizeserver    |
 
 ### webserver服务配置说明
 
@@ -310,10 +310,10 @@ $ helm uninstall bkcmdb
 |         webserver.service.type         | 服务类型 | ClusterIP |
 |         webserver.service.targetPort         | 代理的目标端口 | 80 |
 |         webserver.service.nodePort         | 访问端口 |  |
-|      webserver.command.logDir      |          日志存放路径           |              /data/cmdb/cmdb_webserver/logs              |
+|      webserver.command.logDir      |          日志存放路径           |              /cmdb_webserver/logs              |
 |     webserver.command.logLevel     |            日志等级             |                3                 |
 |   webserver.command.logToStdErr    |     是否把日志输出到stderr      |              false               |
-|         webserver.workDir          |            工作目录             |      /data/cmdb/cmdb_webserver      |
+|         webserver.workDir          |            工作目录             |      /cmdb_webserver      |
 
 ### 服务开启鉴权开关
 

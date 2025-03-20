@@ -54,23 +54,23 @@ adminserver:
   port: 80
   ## @param adminserver.workDir bk-cmdb adminserver work directory
   ##
-  workDir: /data/cmdb/cmdb_adminserver
+  workDir: /cmdb_adminserver
   ## @param adminserver.configDir bk-cmdb adminserver config directory
   ##
-  configDir: /data/cmdb/cmdb_adminserver/configure
+  configDir: /cmdb_adminserver/configure
   ## @param adminserver.errors bk-cmdb adminserver errors config directory
   ##
-  errors: /data/cmdb/cmdb_adminserver/conf/errors
+  errors: /cmdb_adminserver/conf/errors
   ## @param adminserver.errors bk-cmdb adminserver language config directory
   ##
-  language: /data/cmdb/cmdb_adminserver/conf/language
+  language: /cmdb_adminserver/conf/language
   ## bk-cmdb adminserver start command parameters
   ## @param adminserver.command.logDir bk-cmdb adminserver log directory
   ## @param adminserver.command.logLevel bk-cmdb adminserver log level
   ## @param adminserver.command.logLevel Enable bk-cmdb adminserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_adminserver/logs
+    logDir: /cmdb_adminserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -166,14 +166,14 @@ apiserver:
   port: 80
   ## @param apiserver.workDir bk-cmdb apiserver work directory
   ##
-  workDir: /data/cmdb/cmdb_apiserver
+  workDir: /cmdb_apiserver
   ## bk-cmdb apiserver start command parameters
   ## @param apiserver.command.logDir bk-cmdb apiserver log directory
   ## @param apiserver.command.logLevel bk-cmdb apiserver log level
   ## @param apiserver.command.logLevel Enable bk-cmdb apiserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_apiserver/logs
+    logDir: /cmdb_apiserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -270,14 +270,14 @@ authserver:
   port: 80
   ## @param authserver.workDir bk-cmdb authserver work directory
   ##
-  workDir: /data/cmdb/cmdb_authserver
+  workDir: /cmdb_authserver
   ## bk-cmdb authserver start command parameters
   ## @param authserver.command.logDir bk-cmdb authserver log directory
   ## @param authserver.command.logLevel bk-cmdb authserver log level
   ## @param authserver.command.logLevel Enable bk-cmdb authserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_authserver/logs
+    logDir: /cmdb_authserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -331,14 +331,14 @@ cacheservice:
   port: 80
   ## @param cacheservice.workDir bk-cmdb cacheservice work directory
   ##
-  workDir: /data/cmdb/cmdb_cacheservice
+  workDir: /cmdb_cacheservice
   ## bk-cmdb cacheservice start command parameters
   ## @param cacheservice.command.logDir bk-cmdb cacheservice log directory
   ## @param cacheservice.command.logLevel bk-cmdb cacheservice log level
   ## @param cacheservice.command.logLevel Enable bk-cmdb cacheservice print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_cacheservice/logs
+    logDir: /cmdb_cacheservice/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -392,7 +392,7 @@ cloudserver:
   port: 80
   ## @param cloudserver.workDir bk-cmdb cloudserver work directory
   ##
-  workDir: /data/cmdb/cmdb_cloudserver
+  workDir: /cmdb_cloudserver
   ## bk-cmdb cloudserver start command parameters
   ## @param cloudserver.command.logDir bk-cmdb cloudserver log directory
   ## @param cloudserver.command.logLevel bk-cmdb cloudserver log level
@@ -400,7 +400,7 @@ cloudserver:
   ## @param cloudserver.command.enableCryptor Enable bk-cmdb cloudserver secret service
   ##
   command:
-    logDir: /data/cmdb/cmdb_cloudserver/logs
+    logDir: /cmdb_cloudserver/logs
     logLevel: 3
     logToStdErr: false
     enableCryptor: false
@@ -455,14 +455,14 @@ coreservice:
   port: 80
   ## @param coreservice.workDir bk-cmdb coreservice work directory
   ##
-  workDir: /data/cmdb/cmdb_coreservice
+  workDir: /cmdb_coreservice
   ## bk-cmdb coreservice start command parameters
   ## @param coreservice.command.logDir bk-cmdb coreservice log directory
   ## @param coreservice.command.logLevel bk-cmdb coreservice log level
   ## @param coreservice.command.logLevel Enable bk-cmdb coreservice print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_coreservice/logs
+    logDir: /cmdb_coreservice/logs
     logLevel: 3
     logToStdErr: false
     disableInsertion: false
@@ -517,14 +517,14 @@ datacollection:
   port: 80
   ## @param datacollection.workDir bk-cmdb datacollection work directory
   ##
-  workDir: /data/cmdb/cmdb_datacollection
+  workDir: /cmdb_datacollection
   ## bk-cmdb datacollection start command parameters
   ## @param datacollection.command.logDir bk-cmdb datacollection log directory
   ## @param datacollection.command.logLevel bk-cmdb datacollection log level
   ## @param datacollection.command.logLevel Enable bk-cmdb datacollection print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_datacollection/logs
+    logDir: /cmdb_datacollection/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -578,14 +578,14 @@ eventserver:
   port: 80
   ## @param eventserver.workDir bk-cmdb eventserver work directory
   ##
-  workDir: /data/cmdb/cmdb_eventserver
+  workDir: /cmdb_eventserver
   ## bk-cmdb eventserver start command parameters
   ## @param eventserver.command.logDir bk-cmdb eventserver log directory
   ## @param eventserver.command.logLevel bk-cmdb eventserver log level
   ## @param eventserver.command.logLevel Enable bk-cmdb eventserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_eventserver/logs
+    logDir: /cmdb_eventserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -639,14 +639,14 @@ hostserver:
   port: 80
   ## @param hostserver.workDir bk-cmdb hostserver work directory
   ##
-  workDir: /data/cmdb/cmdb_hostserver
+  workDir: /cmdb_hostserver
   ## bk-cmdb hostserver start command parameters
   ## @param hostserver.command.logDir bk-cmdb hostserver log directory
   ## @param hostserver.command.logLevel bk-cmdb hostserver log level
   ## @param hostserver.command.logLevel Enable bk-cmdb hostserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_hostserver/logs
+    logDir: /cmdb_hostserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -700,14 +700,14 @@ operationserver:
   port: 80
   ## @param operationserver.workDir bk-cmdb operationserver work directory
   ##
-  workDir: /data/cmdb/cmdb_operationserver
+  workDir: /cmdb_operationserver
   ## bk-cmdb operationserver start command parameters
   ## @param operationserver.command.logDir bk-cmdb operationserver log directory
   ## @param operationserver.command.logLevel bk-cmdb operationserver log level
   ## @param operationserver.command.logLevel Enable bk-cmdb operationserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_operationserver/logs
+    logDir: /cmdb_operationserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -761,14 +761,14 @@ procserver:
   port: 80
   ## @param procserver.workDir bk-cmdb procserver work directory
   ##
-  workDir: /data/cmdb/cmdb_procserver
+  workDir: /cmdb_procserver
   ## bk-cmdb procserver start command parameters
   ## @param procserver.command.logDir bk-cmdb procserver log directory
   ## @param procserver.command.logLevel bk-cmdb procserver log level
   ## @param procserver.command.logLevel Enable bk-cmdb procserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_procserver/logs
+    logDir: /cmdb_procserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -822,14 +822,14 @@ synchronizeserver:
   port: 80
   ## @param synchronizeserver.workDir bk-cmdb synchronizeserver work directory
   ##
-  workDir: /data/cmdb/cmdb_synchronizeserver
+  workDir: /cmdb_synchronizeserver
   ## bk-cmdb synchronizeserver start command parameters
   ## @param synchronizeserver.command.logDir bk-cmdb synchronizeserver log directory
   ## @param synchronizeserver.command.logLevel bk-cmdb synchronizeserver log level
   ## @param synchronizeserver.command.logLevel Enable bk-cmdb synchronizeserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_synchronizeserver/logs
+    logDir: /cmdb_synchronizeserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -883,14 +883,14 @@ taskserver:
   port: 80
   ## @param taskserver.workDir bk-cmdb taskserver work directory
   ##
-  workDir: /data/cmdb/cmdb_taskserver
+  workDir: /cmdb_taskserver
   ## bk-cmdb taskserver start command parameters
   ## @param taskserver.command.logDir bk-cmdb taskserver log directory
   ## @param taskserver.command.logLevel bk-cmdb taskserver log level
   ## @param taskserver.command.logLevel Enable bk-cmdb taskserver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_taskserver/logs
+    logDir: /cmdb_taskserver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -944,14 +944,14 @@ toposerver:
   port: 80
   ## @param toposerver.workDir bk-cmdb toposerver work directory
   ##
-  workDir: /data/cmdb/cmdb_toposerver
+  workDir: /cmdb_toposerver
   ## bk-cmdb toposerver start command parameters
   ## @param toposerver.command.logDir bk-cmdb toposerver log directory
   ## @param toposerver.command.logLevel bk-cmdb toposerver log level
   ## @param toposerver.command.logLevel Enable bk-cmdb toposerver print log to stderr
   ##
   command:
-    logDir: /data/cmdb/cmdb_toposerver/logs
+    logDir: /cmdb_toposerver/logs
     logLevel: 3
     logToStdErr: false
   ## @param podAnnotations Annotations for bk-panel pods
@@ -1425,6 +1425,9 @@ zookeeper:
   ##
   persistence:
     size: 10Gi
+  ## @param zookeeper.nameOverride String to partially override common.names.fullname template (will maintain the release name)
+  ##
+  # nameOverride: ""
   ## @param zookeeper.image.repository ZooKeeper image repository
   ##
   image:

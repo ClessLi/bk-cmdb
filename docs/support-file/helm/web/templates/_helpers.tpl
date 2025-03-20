@@ -63,6 +63,19 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 {{- end -}}
 
+{{- define "cmdb.zookeeper.fullname" -}}
+{{- $name := default "zookeeper" .Values.zookeeper.nameOverride -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{- define "cmdb.configAndServiceCenter.addr" -}}
+  {{- if and .Values.zookeeper .Values.zookeeper.enabled ( eq .Values.zookeeper.enabled true ) -}}
+    {{- template "cmdb.zookeeper.fullname" . -}}:{{- printf "%s" "2181" -}}
+  {{- else if and .Values.configAndServiceCenter .Values.configAndServiceCenter.addr -}}
+    {{- .Values.configAndServiceCenter.addr -}}
+  {{- end -}}
+{{- end -}}
+
 {{- define "cmdb.mongodb.addr" -}}
   {{- if eq .Values.mongodb.enabled true -}}
     {{ .Release.Name }}-mongodb-0.{{ .Release.Name }}-{{- .Values.mongodb.host -}}:{{- printf "%s" "27017" -}}

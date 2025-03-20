@@ -12,6 +12,7 @@ spec:
   parallelism: 1
   template:
     spec:
+      {{- include "common.images.pullSecrets" (dict "global" .Values.global) | nindent 6 }}
       containers:
       - command:
         - bash
