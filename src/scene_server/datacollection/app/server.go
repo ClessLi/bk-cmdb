@@ -180,6 +180,7 @@ func NewDataCollection(ctx context.Context, op *options.ServerOption) (*DataColl
 	// set global cc errors.
 	errors.SetGlobalCCError(engine.CCErr)
 
+	blog.Info("new data collection: set hash")
 	// set hash.
 	newDataCollection.hash = collections.NewHash(svrInfo.RegisterIP, svrInfo.Port, engine.Discovery())
 
@@ -188,6 +189,7 @@ func NewDataCollection(ctx context.Context, op *options.ServerOption) (*DataColl
 	newDataCollection.service = svc.NewService(ctx, engine)
 	newDataCollection.registry = engine.Metric().Registry()
 
+	blog.Info("new data collection: return new")
 	return newDataCollection, nil
 }
 
@@ -203,9 +205,11 @@ func (c *DataCollection) Service() *svc.Service {
 
 // OnHostConfigUpdate is callback for updating configs.
 func (c *DataCollection) OnHostConfigUpdate(prev, curr cc.ProcessConfig) {
+	blog.Info("update config: lock")
 	c.hostConfigUpdateMu.Lock()
 	defer c.hostConfigUpdateMu.Unlock()
 
+	blog.Info("update config: check config is empty or not")
 	if len(curr.ConfigData) > 0 {
 		// NOTE: allow to update configs with empty values?
 		// NOTE: what is prev used for? build a compare logic here?
@@ -220,14 +224,19 @@ func (c *DataCollection) OnHostConfigUpdate(prev, curr cc.ProcessConfig) {
 		c.config.Esb.AppCode, _ = cc.String("esb.appCode")
 		c.config.Esb.AppSecret, _ = cc.String("esb.appSecret")
 	}
+	blog.Info("update config: exit and unlock")
 }
 
 // initConfigs inits configs for new DataCollection server.
 func (c *DataCollection) initConfigs() error {
+	blog.Info("init configs")
 	for {
 		// wait and parse configs that async updated by backbone engine.
+		blog.Info("init configs: lock")
 		c.hostConfigUpdateMu.Lock()
+		blog.Info("init configs: check config is empty or not")
 		if c.config == nil {
+			blog.Info("init configs: config is not empty. unlock")
 			c.hostConfigUpdateMu.Unlock()
 
 			blog.Info("DataCollection| can't find configs to run the new datacollection server, try again later!")
@@ -236,6 +245,7 @@ func (c *DataCollection) initConfigs() error {
 		}
 
 		// ready to init new datacollection instance.
+		blog.Info("init configs: config is empty. unlock")
 		c.hostConfigUpdateMu.Unlock()
 		break
 	}
@@ -529,6 +539,7 @@ func (c *DataCollection) runCollectPorters() {
 
 // Run runs a new datacollection server.
 func (c *DataCollection) Run() error {
+	blog.Info("DataCollection| start to run")
 	// init configs.
 	if err := c.initConfigs(); err != nil {
 		return err
@@ -551,6 +562,7 @@ func (c *DataCollection) Run() error {
 
 // Run setups a new datacollection app with a context and options and runs it as server instance.
 func Run(ctx context.Context, cancel context.CancelFunc, op *options.ServerOption) error {
+	blog.Info("DataCollection| Run: create new datacollection")
 	// create datacollection server.
 	dataCollection, err := NewDataCollection(ctx, op)
 	if err != nil {
@@ -561,6 +573,7 @@ func Run(ctx context.Context, cancel context.CancelFunc, op *options.ServerOptio
 		return err
 	}
 
+	blog.Info("DataCollections| Run: start back bone server")
 	// all modules is inited success, start the new server now.
 	if err := backbone.StartServer(ctx, cancel, dataCollection.Engine(),
 		dataCollection.Service().WebService(), true); err != nil {
